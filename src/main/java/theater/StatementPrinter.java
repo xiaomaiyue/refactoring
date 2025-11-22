@@ -27,7 +27,7 @@ public class StatementPrinter {
         final NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
         for (Performance p : invoice.getPerformances()) {
             result.append(String.format("  %s: %s (%s seats)%n", getPlay(p).getName(),
-                    usd(frmt, getThisAmount(p)), p.getAudience()));
+                    usd(frmt, getAmount(p)), p.getAudience()));
         }
         result.append(String.format("Amount owed is %s%n", usd(frmt, getTotalAmount())));
         result.append(String.format("You earned %s credits%n", getTotalVolumeCredits()));
@@ -37,7 +37,7 @@ public class StatementPrinter {
     private int getTotalAmount() {
         int totalAmount = 0;
         for (Performance p : invoice.getPerformances()) {
-            totalAmount += getThisAmount(p);
+            totalAmount += getAmount(p);
         }
         return totalAmount;
     }
@@ -70,7 +70,7 @@ public class StatementPrinter {
         return plays.get(performance.getPlayID());
     }
 
-    private int getThisAmount(Performance performance) {
+    private int getAmount(Performance performance) {
         int result;
         switch (getPlay(performance).getType()) {
             case "tragedy":
