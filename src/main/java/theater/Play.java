@@ -1,5 +1,6 @@
 package theater;
 
+@SuppressWarnings({"checkstyle:WriteTag", "checkstyle:SuppressWarnings"})
 public class Play {
 
     private final String name;
